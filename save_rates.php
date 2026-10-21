@@ -4,7 +4,7 @@ if($_SERVER["REQUEST_METHOD"]!=="POST"){header("Location: prices.php");exit;}
 $kind=(string)($_POST["kind"]??"");
 try{
  if($kind==="rates"){
-  $valid=["Vavuniya","Mannar","Mullaitivu","Kilinochchi","Jaffna"];$conn->begin_transaction();
+  $valid=["Ampara","Anuradhapura","Badulla","Batticaloa","Colombo","Galle","Gampaha","Hambantota","Jaffna","Kalutara","Kandy","Kegalle","Kilinochchi","Kurunegala","Mannar","Matale","Matara","Monaragala","Mullaitivu","Nuwara Eliya","Polonnaruwa","Puttalam","Ratnapura","Trincomalee","Vavuniya"];$conn->begin_transaction();
   $s=$conn->prepare("INSERT INTO district_rates(district,divisor) VALUES(?,?) ON DUPLICATE KEY UPDATE divisor=VALUES(divisor)");
   foreach(($_POST["rates"]??[]) as $district=>$value){$value=filter_var($value,FILTER_VALIDATE_FLOAT);if(!in_array($district,$valid,true)||$value===false||$value<=0)continue;$s->bind_param("sd",$district,$value);$s->execute();}
   $conn->commit();
