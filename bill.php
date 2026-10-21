@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JM PADDY | Create Bill</title><link rel="stylesheet" href="style.css"></head>
-<body><div class="app"><aside class="sidebar"><h2>🌾 JM PADDY</h2><p class="subtitle">Paddy Billing System</p><nav><a href="dashboard.php">🏠 Dashboard</a><a class="active" href="bill.php">🧾 Create Bill</a><a href="history.php">📋 Bill History</a></nav></aside>
+<body><div class="app"><aside class="sidebar"><h2>🌾 JM PADDY</h2><p class="subtitle">Paddy Billing System</p><nav><a href="dashboard.php">🏠 Dashboard</a><a href="bill.php">🧾 Create Bill</a><a href="farmers.php">👨‍🌾 Farmers</a><a href="history.php">📋 Bill History</a><a href="reports.php">📈 Reports</a><a href="prices.php">💰 Price Management</a><a href="settings.php">⚙️ Settings</a></nav></aside>
 <main class="main"><header class="topbar"><div><h1>Create Paddy Bill</h1><p>Enter farmer details and weights. Totals update automatically.</p></div></header>
 <form id="billForm" action="save_bill.php" method="POST">
 <section class="panel"><h2>👨‍🌾 Farmer Information</h2><div class="grid">
