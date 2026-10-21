@@ -9,7 +9,7 @@ try{
  $q->bind_param("s",$phone);$q->execute();$farmer=$q->get_result()->fetch_assoc();
  if(!$farmer){echo json_encode(["balance"=>0]);exit;}
  $sql="SELECT f.opening_balance + COALESCE(SUM(b.total_amount-b.paid_amount-COALESCE(p.paid_extra,0)),0) AS balance
- FROM farmers f LEFT JOIN bills b ON b.farmer_id=f.id AND (?=0 OR b.id<>?)
+ FROM farmers f LEFT JOIN bills b ON b.farmer_id=f.id AND (?=0 OR b.id<?)
  LEFT JOIN (SELECT bill_id,SUM(amount) paid_extra FROM bill_payments GROUP BY bill_id) p ON p.bill_id=b.id
  WHERE f.id=? GROUP BY f.id,f.opening_balance";
  $s=$conn->prepare($sql);$s->bind_param("iii",$exclude,$exclude,$farmer["id"]);$s->execute();$row=$s->get_result()->fetch_assoc();
