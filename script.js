@@ -155,7 +155,7 @@ window.addEventListener("load", () => {
     const number = Number(weight.number);
     const value = Number(weight.weight);
     if (number < 1 || value <= 0) return;
-    while ((columnCount - 1) * 10 < number) addWeightColumn();
+    while (columnCount * 10 < number) addWeightColumn();
     const input = document.querySelector('.weight-input[data-number="' + number + '"]');
     if (input) input.value = value;
   });
@@ -173,3 +173,29 @@ document.addEventListener("change", event => {
   if (event.target.matches("#paddy_type")) suggestPaddyPrice();
   if (event.target.matches("#price, #paid_amount")) calculateBill();
 });
+
+
+// Keep the live totals and saved weight payload synchronized even when users
+// paste values, use mobile keyboards, or click Recalculate.
+function collectWeightEntries() {
+  const weights = [];
+  document.querySelectorAll(".weight-input").forEach(input => {
+    const value = Number(String(input.value || "").trim());
+    const number = Number(input.dataset.number);
+    if (Number.isFinite(value) && value > 0 && Number.isInteger(number) && number > 0) {
+      weights.push({number, weight: value});
+    }
+  });
+  const field = document.getElementById("weightsData");
+  if (field) field.value = JSON.stringify(weights);
+  return weights;
+}
+window.collectWeightEntries = collectWeightEntries;
+
+// Subtle pointer-following highlight; disabled for touch-only devices.
+if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+  document.addEventListener("pointermove", event => {
+    document.documentElement.style.setProperty("--pointer-x", event.clientX + "px");
+    document.documentElement.style.setProperty("--pointer-y", event.clientY + "px");
+  }, {passive: true});
+}
