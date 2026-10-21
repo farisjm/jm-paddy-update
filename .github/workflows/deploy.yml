@@ -1,0 +1,36 @@
+name: Deploy JM PADDY to PHP hosting
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# The FTP credentials must be added in GitHub repository Settings > Secrets and variables > Actions.
+# Keep the production db.php and uploaded business logo on the host; do not overwrite them on deploy.
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Upload website files over FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Deploy website files
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /htdocs/
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/README.md
+            **/*.sql
+            db.php
+            uploads/**
+            .gitignore
