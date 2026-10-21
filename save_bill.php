@@ -26,7 +26,7 @@ try{
  if($farmerId===0){$f=$conn->prepare("SELECT id FROM farmers WHERE name=? AND address=? ORDER BY id DESC LIMIT 1");$f->bind_param("ss",$name,$address);$f->execute();$x=$f->get_result()->fetch_assoc();if($x)$farmerId=(int)$x["id"];}
  if($farmerId){$f=$conn->prepare("UPDATE farmers SET name=?,phone=?,address=? WHERE id=?");$f->bind_param("sssi",$name,$phone,$address,$farmerId);$f->execute();}
  else{$f=$conn->prepare("INSERT INTO farmers(name,phone,address,opening_balance) VALUES(?,?,?,0)");$f->bind_param("sss",$name,$phone,$address);$f->execute();$farmerId=$conn->insert_id;}
- $balSql="SELECT f.opening_balance + COALESCE(SUM(b.total_amount-b.paid_amount-COALESCE(p.extra_paid,0)),0) AS outstanding FROM farmers f LEFT JOIN bills b ON b.farmer_id=f.id AND (?=0 OR b.id<>?) LEFT JOIN (SELECT bill_id,SUM(amount) extra_paid FROM bill_payments GROUP BY bill_id) p ON p.bill_id=b.id WHERE f.id=? GROUP BY f.id,f.opening_balance";
+ $balSql="SELECT f.opening_balance + COALESCE(SUM(b.total_amount-b.paid_amount-COALESCE(p.extra_paid,0)),0) AS outstanding FROM farmers f LEFT JOIN bills b ON b.farmer_id=f.id AND (?=0 OR b.id<?) LEFT JOIN (SELECT bill_id,SUM(amount) extra_paid FROM bill_payments GROUP BY bill_id) p ON p.bill_id=b.id WHERE f.id=? GROUP BY f.id,f.opening_balance";
  $b=$conn->prepare($balSql);$b->bind_param("iii",$editId,$editId,$farmerId);$b->execute();$br=$b->get_result()->fetch_assoc();$previous=max(0,round((float)($br["outstanding"]??0),2));
  $extraPaid=0;
  if($editId>0){$ep=$conn->prepare("SELECT COALESCE(SUM(amount),0) AS paid FROM bill_payments WHERE bill_id=?");$ep->bind_param("i",$editId);$ep->execute();$extraPaid=(float)($ep->get_result()->fetch_assoc()["paid"]??0);}
