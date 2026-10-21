@@ -23,8 +23,35 @@ CREATE TABLE IF NOT EXISTS district_rates (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- All 25 Sri Lankan districts are available. 73 is a starter placeholder
+-- for districts whose business-specific divisor has not yet been confirmed.
+-- Existing saved divisors are preserved by the duplicate-key clause.
 INSERT INTO district_rates(district,divisor) VALUES
- ('Vavuniya',72),('Mannar',73),('Mullaitivu',73),('Kilinochchi',73),('Jaffna',73)
+ ('Ampara',73),
+ ('Anuradhapura',73),
+ ('Badulla',73),
+ ('Batticaloa',73),
+ ('Colombo',73),
+ ('Galle',73),
+ ('Gampaha',73),
+ ('Hambantota',73),
+ ('Jaffna',73),
+ ('Kalutara',73),
+ ('Kandy',73),
+ ('Kegalle',73),
+ ('Kilinochchi',73),
+ ('Kurunegala',73),
+ ('Mannar',73),
+ ('Matale',73),
+ ('Matara',73),
+ ('Monaragala',73),
+ ('Mullaitivu',73),
+ ('Nuwara Eliya',73),
+ ('Polonnaruwa',73),
+ ('Puttalam',73),
+ ('Ratnapura',73),
+ ('Trincomalee',73),
+ ('Vavuniya',72)
 ON DUPLICATE KEY UPDATE district=VALUES(district);
 
 CREATE TABLE IF NOT EXISTS paddy_prices (
