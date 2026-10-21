@@ -1,1 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title"><title id="title">JM PADDY logo</title><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8e986"/><stop offset="1" stop-color="#238447"/></linearGradient></defs><rect width="160" height="160" rx="34" fill="#123b27"/><path d="M80 127V45" stroke="#e8f7df" stroke-width="6" stroke-linecap="round"/><path d="M79 75C55 74 42 60 40 42c23 1 38 12 39 33ZM82 93c24-2 39-17 41-37-23 2-38 14-41 37ZM79 56C63 49 57 35 61 21c17 7 23 18 18 34ZM82 113c18-2 28-12 32-27-17 2-28 10-32 27Z" fill="url(#g)" stroke="#e8f7df" stroke-width="2" stroke-linejoin="round"/><path d="M48 128h64" stroke="#e8f7df" stroke-width="5" stroke-linecap="round"/><text x="80" y="148" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">JM PADDY</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+<title id="title">JM PADDY — Paddy Management System</title>
+<desc id="desc">Green circular agricultural emblem with golden rice grains, rice fields, and JM PADDY branding.</desc>
+<defs>
+  <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#67b72b"/><stop offset=".52" stop-color="#08783a"/><stop offset="1" stop-color="#075b30"/></linearGradient>
+  <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8dd52d"/><stop offset="1" stop-color="#08783a"/></linearGradient>
+  <linearGradient id="grain" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe65a"/><stop offset="1" stop-color="#f5a900"/></linearGradient>
+  <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9bdc42"/><stop offset="1" stop-color="#08783a"/></linearGradient>
+  <clipPath id="inside"><circle cx="256" cy="256" r="226"/></clipPath>
+</defs>
+<rect width="512" height="512" rx="256" fill="#fff"/>
+<circle cx="256" cy="256" r="242" fill="none" stroke="url(#ring)" stroke-width="13"/>
+<g clip-path="url(#inside)">
+  <circle cx="358" cy="254" r="29" fill="#ffd84d"/>
+  <path d="M115 279 173 248 220 260 260 235 302 258 342 247 389 273 423 270V330H90Z" fill="#51a967"/>
+  <path d="M91 289Q188 266 274 291T425 287V350H91Z" fill="#a7d84c"/>
+  <path d="M88 311Q180 285 267 312T428 307V352H88Z" fill="url(#field)"/>
+  <path d="M95 347Q183 303 263 329T421 329M135 354Q214 310 295 341M222 356Q291 317 375 352" fill="none" stroke="#fff" stroke-width="5"/>
+  <g stroke="#16823e" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M171 340Q163 246 204 165T297 79"/>
+    <path d="M173 339Q188 236 255 164T348 106"/>
+    <path d="M171 340Q143 252 113 196"/>
+  </g>
+  <g fill="url(#leaf)">
+    <path d="M169 333Q120 309 107 257Q153 276 169 333Z"/>
+    <path d="M175 306Q199 251 250 239Q226 283 175 306Z"/>
+    <path d="M186 254Q178 204 213 165Q226 210 186 254Z"/>
+    <path d="M207 204Q229 154 277 142Q258 185 207 204Z"/>
+    <path d="M228 167Q251 119 297 104Q278 145 228 167Z"/>
+  </g>
+  <g fill="url(#grain)" stroke="#f2b31b" stroke-width="1.5">
+    <ellipse cx="278" cy="95" rx="19" ry="9" transform="rotate(-24 278 95)"/>
+    <ellipse cx="309" cy="110" rx="19" ry="9" transform="rotate(10 309 110)"/>
+    <ellipse cx="338" cy="126" rx="19" ry="9" transform="rotate(23 338 126)"/>
+    <ellipse cx="253" cy="126" rx="18" ry="9" transform="rotate(-28 253 126)"/>
+    <ellipse cx="285" cy="143" rx="18" ry="9" transform="rotate(14 285 143)"/>
+    <ellipse cx="318" cy="158" rx="18" ry="9" transform="rotate(34 318 158)"/>
+    <ellipse cx="229" cy="159" rx="17" ry="8" transform="rotate(-34 229 159)"/>
+    <ellipse cx="259" cy="178" rx="17" ry="8" transform="rotate(13 259 178)"/>
+    <ellipse cx="291" cy="193" rx="17" ry="8" transform="rotate(32 291 193)"/>
+    <ellipse cx="213" cy="193" rx="16" ry="8" transform="rotate(-30 213 193)"/>
+    <ellipse cx="241" cy="211" rx="16" ry="8" transform="rotate(13 241 211)"/>
+  </g>
+</g>
+<text x="256" y="393" font-family="Arial,Helvetica,sans-serif" font-size="68" font-weight="900" letter-spacing="-3" text-anchor="middle" fill="#086633">JM <tspan fill="#58a91c">PADDY</tspan></text>
+<text x="256" y="423" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" letter-spacing="3.2" text-anchor="middle" fill="#176a3b">PADDY MANAGEMENT SYSTEM</text>
+<path d="M145 445H214M298 445H367" stroke="#60ad27" stroke-width="4" stroke-linecap="round"/>
+<path d="M256 456Q238 440 232 456Q241 473 256 479Q271 473 280 456Q274 440 256 456Z" fill="#14803c"/>
+</svg>
