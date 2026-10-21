@@ -46,9 +46,10 @@ function calculateBill(){
   const paid=Number(document.getElementById("paid_amount")?.value||0);
   const net=rate>0?total/rate:0, amount=Math.round((net*price+Number.EPSILON)*100)/100;
   const previous=Number(document.getElementById("previous_balance")?.value||0);
-  const due=Math.max(0,Math.round((previous+amount-paid+Number.EPSILON)*100)/100);
+  const extraPaid=Number(window.JMPADDY_EXTRA_PAID||0);
+  const due=Math.max(0,Math.round((previous+amount-paid-extraPaid+Number.EPSILON)*100)/100);
   const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=Number(v).toLocaleString("en-LK",{minimumFractionDigits:2,maximumFractionDigits:2});};
-  set("netWeight",net);set("totalAmount",amount);set("previousBalance",previous);set("totalPayable",previous+amount);set("paidDisplay",paid);set("balanceDue",due);
+  set("netWeight",net);set("totalAmount",amount);set("previousBalance",previous);set("totalPayable",previous+amount);set("paidDisplay",paid+extraPaid);set("balanceDue",due);
   const n=document.getElementById("net_weight"),a=document.getElementById("total_amount"),b=document.getElementById("balance_due");
   if(n)n.value=net.toFixed(4);if(a)a.value=amount.toFixed(2);if(b)b.value=due.toFixed(2);
   const weights=[];document.querySelectorAll(".weight-input").forEach(i=>{if(i.value!==""&&(Number(i.value)||0)>0)weights.push({number:Number(i.dataset.number),weight:Number(i.value)});});
@@ -79,3 +80,6 @@ window.addEventListener("load",()=>{
   document.querySelectorAll(".weight-column").forEach(c=>calculateColumnTotal(c));
   calculateBill();
 });
+// Keep all bill calculations synchronized, including keyboard edits and browser autofill.
+document.addEventListener("input",function(event){if(event.target.matches("#price,#paid_amount,.weight-input"))calculateBill();});
+document.addEventListener("change",function(event){if(event.target.matches("#district"))updateRate();if(event.target.matches("#paddy_type"))suggestPaddyPrice();if(event.target.matches("#price,#paid_amount,.weight-input"))calculateBill();});
