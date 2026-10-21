@@ -15,6 +15,7 @@
 <section class="panel"><h2>🌾 Paddy Information</h2><div class="grid">
 <div><label for="paddy_type">Paddy Type *</label><select name="paddy_type" id="paddy_type" required><option value="">Select paddy type</option><option value="Samba">Samba</option><option value="Keeri Samba">Keeri Samba</option><option value="Nadu">Nadu</option></select></div>
 <div><label for="price">Price per net kg (Rs.) *</label><input type="number" name="price" id="price" step="0.01" min="0" placeholder="Enter today's price" oninput="calculateBill()" required></div>
+<div><label for="paid_amount">Payment received now (Rs.)</label><input type="number" name="paid_amount" id="paid_amount" min="0" step="0.01" value="0" oninput="calculateBill()" required><small>Enter the amount the farmer pays now.</small></div>
 </div></section>
 <section class="panel"><div class="weight-header"><h2>⚖️ Weight Entries</h2><button type="button" class="small-btn" onclick="addWeightColumn()">＋ Add 10 Weights</button></div><p>Enter each sack or weighing value in kilograms. Additional columns can be added as needed.</p><div id="weightContainer" class="weight-container"></div><input type="hidden" name="weights" id="weightsData"></section>
 <section class="panel"><h2>🧮 Bill Calculation</h2><div class="result-grid">
@@ -22,7 +23,8 @@
 <div class="result-box"><span>District Divisor</span><strong id="displayRate">—</strong></div>
 <div class="result-box"><span>Net Weight</span><strong><span id="netWeight">0.00</span> kg</strong></div>
 <div class="result-box total"><span>Total Amount</span><strong>Rs. <span id="totalAmount">0.00</span></strong></div>
-</div><input type="hidden" name="total_weight" id="total_weight"><input type="hidden" name="net_weight" id="net_weight"><input type="hidden" name="total_amount" id="total_amount">
+<div class="result-box"><span>Balance after payment</span><strong>Rs. <span id="balanceDue">0.00</span></strong></div>
+</div><input type="hidden" name="total_weight" id="total_weight"><input type="hidden" name="net_weight" id="net_weight"><input type="hidden" name="total_amount" id="total_amount"><input type="hidden" name="balance_due" id="balance_due">
 <div class="actions"><button type="button" class="calculate" onclick="calculateBill()">Calculate</button><button type="submit" class="save">💾 Save Bill</button><button type="reset" class="clear" onclick="resetWeights()">Clear Form</button></div></section>
 </form></main></div><script src="script.js"></script><script>
 document.getElementById('billForm').addEventListener('submit',function(e){calculateBill();if(!(parseFloat(document.getElementById('total_weight').value)>0)){e.preventDefault();alert('Please enter at least one weight greater than zero.');}});
