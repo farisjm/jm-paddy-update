@@ -14,7 +14,7 @@ body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--gre
 h1{font-size:clamp(24px,3vw,32px);line-height:1.2;margin:0 0 8px;color:var(--green-950)}
 h2{color:var(--green-900)}
 p{color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
 .card,.welcome,.panel{background:var(--white);border:1px solid #e7efe8;border-radius:16px;box-shadow:var(--shadow)}
 .card{padding:22px}
 .card h3{margin:0 0 8px;color:var(--green-900);font-size:17px}
