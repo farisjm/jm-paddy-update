@@ -15,8 +15,7 @@ if ($result) $amountTotal = (float)$result->fetch_assoc()["total"];
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JM PADDY | Dashboard</title><link rel="stylesheet" href="style.css"></head>
 <body><div class="app">
-<aside class="sidebar"><h2>🌾 JM PADDY</h2><p class="subtitle">Paddy Billing System</p><nav>
-<a class="active" href="dashboard.php">🏠 Dashboard</a><a href="bill.php">🧾 Create Bill</a><a href="history.php">📋 Bill History</a></nav></aside>
+<aside class="sidebar"><h2>🌾 JM PADDY</h2><p class="subtitle">Paddy Billing System</p><nav><a href="dashboard.php">🏠 Dashboard</a><a href="bill.php">🧾 Create Bill</a><a href="farmers.php">👨‍🌾 Farmers</a><a href="history.php">📋 Bill History</a><a href="reports.php">📈 Reports</a><a href="prices.php">💰 Price Management</a><a href="settings.php">⚙️ Settings</a></nav></aside>
 <main class="main"><header class="topbar"><div><h1>Dashboard</h1><p>Welcome back — here's your paddy business overview.</p></div><a class="btn" href="bill.php">＋ New Bill</a></header>
 <section class="cards">
 <div class="card"><h3>🧾 Total Bills</h3><strong style="font-size:30px;color:#174b30"><?= number_format($billCount) ?></strong><p>Saved billing records</p></div>
