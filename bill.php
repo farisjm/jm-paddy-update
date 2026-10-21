@@ -11,12 +11,14 @@ if ($editId > 0) {
   $ws->bind_param("i",$editId); $ws->execute(); $wr=$ws->get_result();
   while($w=$wr->fetch_assoc()) $initialWeights[]=["number"=>(int)$w["number"],"weight"=>(float)$w["weight"]];
 }
-$rates=["Vavuniya"=>72,"Mannar"=>73,"Mullaitivu"=>73,"Kilinochchi"=>73,"Jaffna"=>73];
+$rates=["Ampara"=>73,"Anuradhapura"=>73,"Badulla"=>73,"Batticaloa"=>73,"Colombo"=>73,"Galle"=>73,"Gampaha"=>73,"Hambantota"=>73,"Jaffna"=>73,"Kalutara"=>73,"Kandy"=>73,"Kegalle"=>73,"Kilinochchi"=>73,"Kurunegala"=>73,"Mannar"=>73,"Matale"=>73,"Matara"=>73,"Monaragala"=>73,"Mullaitivu"=>73,"Nuwara Eliya"=>73,"Polonnaruwa"=>73,"Puttalam"=>73,"Ratnapura"=>73,"Trincomalee"=>73,"Vavuniya"=>72];
 $rateResult=$conn->query("SELECT district,divisor FROM district_rates");
 if($rateResult) while($r=$rateResult->fetch_assoc()) $rates[$r["district"]]=(float)$r["divisor"];
 $paddyPrices=["Samba"=>0,"Keeri Samba"=>0,"Nadu"=>0];
 $priceResult=$conn->query("SELECT paddy_type,price FROM paddy_prices");
 if($priceResult) while($r=$priceResult->fetch_assoc()) $paddyPrices[$r["paddy_type"]]=(float)$r["price"];
+$existingExtraPaid=0;
+if($editId>0){$ep=$conn->prepare("SELECT COALESCE(SUM(amount),0) AS paid FROM bill_payments WHERE bill_id=?");$ep->bind_param("i",$editId);$ep->execute();$existingExtraPaid=(float)($ep->get_result()->fetch_assoc()["paid"]??0);}
 $selectedDistrict=$existing["district"]??"";
 $selectedType=$existing["paddy_type"]??"";
 ?>
@@ -53,4 +55,4 @@ $selectedType=$existing["paddy_type"]??"";
 <div class="actions"><button type="button" class="calculate" onclick="calculateBill()">Recalculate</button><button type="submit" class="save">💾 <?= $existing ? "Update Bill" : "Save Bill" ?></button><button type="reset" class="clear" onclick="resetWeights()">Clear Form</button><?php if($existing): ?><a class="btn" href="view_bill.php?id=<?= (int)$editId ?>">Cancel</a><?php endif; ?></div>
 </section></form></main></div>
 <script>window.JMPADDY_RATES=<?= json_encode($rates,JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_AMP|JSON_HEX_QUOT) ?>;window.JMPADDY_INITIAL_WEIGHTS=<?= json_encode($initialWeights,JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_AMP|JSON_HEX_QUOT) ?>;window.JMPADDY_EDIT_ID=<?= (int)$editId ?>;window.JMPADDY_EXTRA_PAID=<?= json_encode($existingExtraPaid) ?>;</script><script src="script.js"></script>
-<script>document.getElementById('billForm').addEventListener('submit',function(e){calculateBill();if(!(parseFloat(document.getElementById('total_weight').value)>0)){e.preventDefault();alert('Please enter at least one weight greater than zero.');}});window.addEventListener('load',function(){if(document.getElementById('district').value)updateRate();if(document.getElementById('phone').value)loadFarmerBalance();calculateBill();});</script></body></html>
+<script>document.getElementById('billForm').addEventListener('submit',function(e){calculateBill();if(!(parseFloat(document.getElementById('total_weight').value)>0)){e.preventDefault();alert('Please enter at least one weight greater than zero.');}});window.addEventListener('load',function(){if(document.getElementById('district').value && !window.JMPADDY_EDIT_ID)updateRate();if(document.getElementById('phone').value)loadFarmerBalance();calculateBill();});</script></body></html>
