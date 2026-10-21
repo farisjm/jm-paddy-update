@@ -58,3 +58,10 @@ tbody tr:hover{background:#f8fcf8}
 @media(max-width:900px){.sidebar{width:210px;flex-basis:210px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.app{display:block}.sidebar{width:100%;height:auto;position:relative;padding:15px 12px}.sidebar h2{text-align:left;font-size:20px}.sidebar .subtitle{text-align:left;margin:3px 0 12px}.sidebar nav{display:flex;overflow-x:auto;gap:5px}.sidebar a{white-space:nowrap;flex:0 0 auto;padding:9px 11px;font-size:13px}.main{padding:18px 12px}.cards{grid-template-columns:1fr}.grid{grid-template-columns:1fr;gap:13px}.full{grid-column:auto}.panel{padding:15px}.result-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.result-box{padding:12px}.result-box strong{font-size:17px}.weight-header{align-items:flex-start}.actions>*{flex:1 1 auto}.welcome{padding:22px}.topbar{align-items:flex-start}}
 @media print{.sidebar,.actions,.print-btn,.btn{display:none!important}.app{display:block}.main{padding:0}.panel,.card{box-shadow:none}}
+
+/* Brand and subtle motion */
+.sidebar .brand{display:flex;align-items:center;justify-content:center;gap:9px;font-size:19px!important}
+.sidebar .brand img{width:34px;height:34px;flex:0 0 34px;border-radius:9px}
+@keyframes jmFadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.panel,.card,.welcome{animation:jmFadeUp .28s ease both}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
