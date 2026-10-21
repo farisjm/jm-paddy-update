@@ -6,7 +6,7 @@ $editId=max(0,(int)($_GET["edit"]??0));
 $billNo=field("bill_no");$date=field("bill_date");$name=field("farmer_name");$phone=field("phone");$address=field("address");$district=field("district");$type=field("paddy_type");
 $weights=json_decode((string)($_POST["weights"]??"[]"),true);
 if($billNo===""||$date===""||$name===""||$district===""||$type===""||!is_array($weights)){http_response_code(422);exit("Please complete required fields. <a href='bill.php'>Return</a>");}
-$rates=["Vavuniya"=>72,"Mannar"=>73,"Mullaitivu"=>73,"Kilinochchi"=>73,"Jaffna"=>73];
+$rates=["Ampara"=>73,"Anuradhapura"=>73,"Badulla"=>73,"Batticaloa"=>73,"Colombo"=>73,"Galle"=>73,"Gampaha"=>73,"Hambantota"=>73,"Jaffna"=>73,"Kalutara"=>73,"Kandy"=>73,"Kegalle"=>73,"Kilinochchi"=>73,"Kurunegala"=>73,"Mannar"=>73,"Matale"=>73,"Matara"=>73,"Monaragala"=>73,"Mullaitivu"=>73,"Nuwara Eliya"=>73,"Polonnaruwa"=>73,"Puttalam"=>73,"Ratnapura"=>73,"Trincomalee"=>73,"Vavuniya"=>72];
 $rateQuery=$conn->query("SELECT district,divisor FROM district_rates");
 if($rateQuery)while($r=$rateQuery->fetch_assoc())$rates[$r["district"]]=(float)$r["divisor"];
 if(!isset($rates[$district])||$rates[$district]<=0){http_response_code(422);exit("Invalid district divisor. Update district rates first.");}
