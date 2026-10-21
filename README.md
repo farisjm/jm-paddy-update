@@ -35,10 +35,11 @@ Default district divisors (editable):
 ## Setup
 1. Install XAMPP and start Apache and MySQL.
 2. Copy the repository into `C:\xampp\htdocs\jm-paddy`.
-3. In phpMyAdmin, select the `jm_paddy` database and ensure the existing base tables `farmers`, `bills`, and `bill_weights` are present.
-4. Import **`upgrade_v2.sql`** into `jm_paddy`. It adds balance/payment columns and creates the district rate and paddy price tables. It is designed to be rerun on supported MariaDB/MySQL versions.
-5. Confirm database credentials in `db.php`.
-6. Open `http://localhost/jm-paddy/dashboard.php`.
+3. In phpMyAdmin, create and select the database `jm_paddy`.
+4. For a new database, import `database_schema.sql` first to create the base tables. If you already have tables and bills, keep your data and skip this step.
+5. Import **`upgrade_v2.sql`** into `jm_paddy`. It adds balance/payment columns and creates the district rate and paddy price tables. It is designed to be rerun on supported MariaDB/MySQL versions.
+6. Confirm database credentials in `db.php`.
+7. Open `http://localhost/jm-paddy/dashboard.php`.
 
 ## Important notes
 - The app does not send WhatsApp messages silently. The WhatsApp button opens a prefilled message and the user must tap **Send**. Fully automatic sending requires an approved WhatsApp Business Platform/API setup.
