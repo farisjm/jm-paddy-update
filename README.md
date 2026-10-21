@@ -53,3 +53,11 @@ PHP 8+, MySQL/MariaDB, HTML, CSS, JavaScript, XAMPP.
 
 ## Developer
 M. J. M. FARIS — BSc Information Technology Undergraduate, University of Vavuniya.
+
+
+## All 25 districts and divisor values
+The district selector and Rates & Prices page include all 25 Sri Lankan districts. The migration preserves existing saved divisors. Vavuniya starts at 72; Mannar, Mullaitivu, Kilinochchi and Jaffna start at 73. For other districts, 73 is a placeholder only until you confirm the correct divisor used by your business. Visit Rates & Prices and enter the correct divisor for each district before making real bills.
+
+## Updating without ZIP files
+- For local XAMPP, use GitHub Desktop to manage a Git clone and pull updates instead of downloading ZIPs. Back up the database before changing application files.
+- To use the app from any phone/device without starting XAMPP, deploy it to a PHP-capable web host with a hosted MySQL/MariaDB database. Netlify by itself does not execute PHP or provide this app's MySQL backend. Automatic online deployment can be configured once the PHP host and deployment method are selected; never commit hosting credentials to this repository.
