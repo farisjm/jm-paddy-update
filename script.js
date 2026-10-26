@@ -155,7 +155,7 @@ window.addEventListener("load", () => {
     const number = Number(weight.number);
     const value = Number(weight.weight);
     if (number < 1 || value <= 0) return;
-    while (columnCount * 10 < number) addWeightColumn();
+    while ((columnCount - 1) * 10 < number) addWeightColumn();
     const input = document.querySelector('.weight-input[data-number="' + number + '"]');
     if (input) input.value = value;
   });
