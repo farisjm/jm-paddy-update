@@ -15,16 +15,33 @@ jobs:
   deploy:
     name: Upload website files over FTP
     runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER || secrets.FTP_HOST }}
+      FTP_USERNAME: ${{ secrets.FTP_USERNAME || secrets.FTP_USER }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD || secrets.FTP_PASS }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Validate FTP deployment secrets
+        run: |
+          missing=0
+          for key in FTP_SERVER FTP_USERNAME FTP_PASSWORD; do
+            if [ -z "${!key}" ]; then
+              echo "::error::Missing secret for ${key}. Configure either ${key} or its legacy alias in repository secrets."
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
+
       - name: Deploy website files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ env.FTP_SERVER }}
+          username: ${{ env.FTP_USERNAME }}
+          password: ${{ env.FTP_PASSWORD }}
           server-dir: /htdocs/
           exclude: |
             **/.git*
